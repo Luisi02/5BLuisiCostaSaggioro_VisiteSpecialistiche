@@ -1,5 +1,6 @@
 let config;
 let result_Get;
+
 //fa la fetch al json
 const GetData = () => {
    return fetch('./conf.json')
@@ -82,6 +83,6 @@ const Aggiorna =(chiave_d,paziente)=>{
                table.crea(lista_diz, hours,giorno);
            })
          }
-      })
-   });
+      })
+   });
 }

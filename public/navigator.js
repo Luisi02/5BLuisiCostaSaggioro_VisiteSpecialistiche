@@ -1,5 +1,6 @@
 let specialtyTabs;
 let chiave;
+
 const createSpecialtyTabs = (parentElement,reparti) => {
   let activeIndex = 0; 
   console.log(parentElement)
