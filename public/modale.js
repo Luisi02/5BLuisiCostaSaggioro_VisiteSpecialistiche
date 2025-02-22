@@ -81,7 +81,7 @@ const createForm = () => {
                     <div class="form-group">
                         ${index[0]}
                         <select id="${index[0]}" class="form-control">
-                            ${index[2].map(option => <option value="${option}">${option}</option>).join('')}
+                            ${index[2].map(option => `<option value="${option}">${option}</option>`).join('')}
                         </select>
                     </div>`;
                 }
