@@ -34,23 +34,22 @@ const database = {
          date DATE NOT NULL,
          hour INT NOT NULL,
          name VARCHAR(50),
-         FOREIGN KEY (idType) REFERENCES type(id)      
+         FOREIGN KEY (idType) REFERENCES type(id)
+         )  
       `);
    },
-   insert: async (accident) => {
+   insert: async (booking) => {
       let sql = `
-         INSERT INTO accident(address, date, time, injured, dead)
+         INSERT INTO booking(date, hour, name)
          VALUES (
-            '${accident.address}', 
-            '${accident.date}', 
-            '${accident.time}', 
-            ${accident.injured}, 
-            ${accident.dead})
+            '${booking.date}', 
+            '${booking.hour}', 
+            ${booking.name}
            `;
       const result = await executeQuery(sql);
-      accident.plates.forEach(async (element) => {
+      booking.type.forEach(async (element) => {
          sql = `
-            INSERT INTO plates(plate, idAccident) 
+            INSERT INTO type(id, name) 
             VALUES (
                '${element}', 
                ${result.insertId})
@@ -63,25 +62,25 @@ const database = {
         SELECT name FROM type 
            `;
       const result = await executeQuery(sql);
-      await Promise.all(result.map(async (accident) => {
+      await Promise.all(result.map(async (booking) => {
          sql = ` 
             SELECT b.id, t.name type, b.date, b.hour, b.name
             FROM booking AS b
             JOIN type as t ON b.idType = t.id
-            SELECT plate FROM plates WHERE idAccident=${accident.id} 
+            WHERE date='aaaa-mm-gg'
            `;
          const list = await executeQuery(sql);
-         accident.plates = list.map(p => p.plate);
+         booking.type = list.map(p => p.plate);
       }));
       return result;
    },
    drop: async () => {
       let sql = `
-            DROP TABLE IF EXISTS plates
+            DROP TABLE IF EXISTS type
            `;
       await executeQuery(sql);
       sql = `
-            DROP TABLE IF EXISTS accident
+            DROP TABLE IF EXISTS booking
            `;
       await executeQuery(sql);
    }
