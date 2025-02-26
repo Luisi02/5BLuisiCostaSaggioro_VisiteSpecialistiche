@@ -1,8 +1,5 @@
-import { giorno_iniziale } from "../Funzioni/CreateFunctions.js";
-
 //creazione del componente tabella
 export const createTable = (parentElement) => {
-    let lunedi = giorno_iniziale();
     let data = null;
     let header;
     let newrow = [];
@@ -12,17 +9,20 @@ export const createTable = (parentElement) => {
             data = dati;
         },
         
-        creaheader:(lunedi) => {
+        creaheader: (lunedi) => {
             header = "<table class='table table-bordered'><thead>";
             header += "<th>ORE</th>";
+        
             let tempDate = new Date(lunedi);
+            tempDate.setDate(tempDate.getDate() - ((tempDate.getDay() + 6) % 7));
+        
             header += data.map(day => {
-                const formato = day + " " + tempDate.toLocaleDateString("it-IT");
+                const formato = `${day} ${tempDate.toLocaleDateString("it-IT")}`;
                 tempDate.setDate(tempDate.getDate() + 1);
                 return `<th>${formato}</th>`;
             }).join("");
+        
             header += "</thead><tbody>";
-
             parentElement.innerHTML = header;
         },
 

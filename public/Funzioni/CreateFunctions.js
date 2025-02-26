@@ -3,14 +3,19 @@ export const giorno_iniziale = () => {
     let oggi = new Date();
     let giorno_settimanale = oggi.getDay();
 
-    if (giorno_settimanale === 6){
+    // Se oggi è sabato (6) o domenica (0), passiamo a lunedì
+    if (giorno_settimanale === 6) {
         oggi.setDate(oggi.getDate() + 2);
-    } else if (giorno_settimanale === 0){
+    } else if (giorno_settimanale === 0) {
         oggi.setDate(oggi.getDate() + 1);
     }
-    console.log(oggi)
+
+    oggi.setDate(oggi.getDate() - ((oggi.getDay() + 6) % 7));
+
+    console.log("Lunedì della settimana corrente:", oggi);
     return oggi;
 };
+
 
 /* Funzione per creare una lista a partire da un dizionario */
 export const createDiz = (result) => {
