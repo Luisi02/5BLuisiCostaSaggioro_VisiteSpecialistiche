@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use("/", express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist/"))); //permette accesso a bootstrap all'applicazione lato client
+app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist/")));
 
 app.post("/insert", async (req, res) => {
   const booking = req.body;
