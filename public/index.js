@@ -15,11 +15,6 @@ let giorno = giorno_iniziale(); // Data iniziale corretta
 let hours = ["08:00", "09:00", "10:00", "11:00", "12:00"];
 let lista_diz = createDiz({});
 
-// Creazione della tabella con i giorni della settimana corretti
-table.build(["LUNEDÌ", "MARTEDÌ", "MERCOLEDÌ", "GIOVEDÌ", "VENERDÌ"]);
-table.creaheader(new Date(giorno));
-table.crea(lista_diz, hours, new Date(giorno));
-
 // Creazione dei tab di specialità
 let specialtyTabs = createNavigator(
     document.getElementById("specialty-tabs"),
@@ -30,6 +25,11 @@ let specialtyTabs = createNavigator(
     hours
 );
 specialtyTabs.render();
+
+// Creazione della tabella con i giorni della settimana corretti
+table.build(["LUNEDÌ", "MARTEDÌ", "MERCOLEDÌ", "GIOVEDÌ", "VENERDÌ"]);
+table.creaheader(new Date(giorno));
+table.crea(lista_diz, hours, new Date(giorno));
 
 // Gestione della navigazione tra le settimane
 precedente.onclick = () => {
