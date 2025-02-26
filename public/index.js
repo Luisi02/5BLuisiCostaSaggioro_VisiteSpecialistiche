@@ -36,11 +36,11 @@ let giorno = giorno_iniziale();
 let hours = ["08:00", "09:00", "10:00", "11:00", "12:00"];
 
 let lista_diz = [];
-lista_diz=crea_lista_diz({})
+lista_diz = createDiz({});
 table.build( ["LUNEDÌ", "MARTEDÌ", "MERCOLEDÌ", "GIOVEDÌ", "VENERDÌ"]);
 let lunedi = giorno_iniziale()
 table.creaheader(lunedi);
-table.crea(lista_diz, hours,lunedi);
+table.crea(lista_diz, hours, lunedi);
 
 const form = createForm(document.getElementById("form"));
 form.setlabels([["Data", "date"],
@@ -51,7 +51,7 @@ form.setlabels([["Data", "date"],
 form.submit = ((formData) => {
     document.getElementById("Message").onclick = openModal();
     console.log("Dati inviati:", formData);
-    Booking(formData); // Esegue la funzione di prenotazione con i dati inviati
+    createBooking(formData); // Esegue la funzione di prenotazione con i dati inviati
 });
 const bookButton = createBookButton(document.getElementById("controls"),form);
 bookButton.render();
