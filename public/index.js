@@ -48,10 +48,11 @@ form.setlabels([["Data", "date"],
     ["Nominativo", "text"],
 ]); // Imposta le etichette e i campi del form
 
-form.submit = ((formData) => {
+form.submit((formData) => {
     document.getElementById("Message").onclick = openModal();
     console.log("Dati inviati:", formData);
-    createBooking(formData); // Esegue la funzione di prenotazione con i dati inviati
+    createBooking(formData);
 });
+
 const bookButton = createBookButton(document.getElementById("controls"),form);
 bookButton.render();

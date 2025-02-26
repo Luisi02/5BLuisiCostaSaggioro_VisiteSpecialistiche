@@ -1,5 +1,8 @@
+import { giorno_iniziale } from "../Funzioni/CreateFunctions.js";
+
 //creazione del componente tabella
 export const createTable = (parentElement) => {
+    let lunedi = giorno_iniziale();
     let data = null;
     let header;
     let newrow = [];

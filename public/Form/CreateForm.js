@@ -1,7 +1,7 @@
 /* Funzione per creare e gestire un form all'interno di una modale */
 export const createForm = () => {
     let data;
-    callback = null;
+    let callback = null;
 
     const modal = document.getElementById("modal");
     modal.style.display = "none";
