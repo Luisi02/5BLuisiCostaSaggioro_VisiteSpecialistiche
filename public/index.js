@@ -9,13 +9,6 @@ import { giorno_iniziale, createDiz, createBooking } from "./Funzioni/CreateFunc
 const precedente = document.querySelector(".precedente");
 const successivo = document.querySelector(".successiva");
 
-// Creazione dei tab di specialità
-let specialtyTabs = createNavigator(
-    document.getElementById("specialty-tabs"),
-    ["Cardiologia", "Psicologia", "Oncologia", "Ortopedia", "Neurologia"]
-);
-specialtyTabs.render();
-
 // Inizializzazione della tabella e dei dati
 let table = createTable(document.querySelector("#table"));
 let giorno = giorno_iniziale(); // Data iniziale corretta
@@ -24,8 +17,19 @@ let lista_diz = createDiz({});
 
 // Creazione della tabella con i giorni della settimana corretti
 table.build(["LUNEDÌ", "MARTEDÌ", "MERCOLEDÌ", "GIOVEDÌ", "VENERDÌ"]);
-table.creaheader(new Date(giorno)); // Passiamo una copia sicura della data
+table.creaheader(new Date(giorno));
 table.crea(lista_diz, hours, new Date(giorno));
+
+// Creazione dei tab di specialità
+let specialtyTabs = createNavigator(
+    document.getElementById("specialty-tabs"),
+    ["Cardiologia", "Psicologia", "Oncologia", "Ortopedia", "Neurologia"],
+    table, 
+    giorno, 
+    lista_diz, 
+    hours
+);
+specialtyTabs.render();
 
 // Gestione della navigazione tra le settimane
 precedente.onclick = () => {
