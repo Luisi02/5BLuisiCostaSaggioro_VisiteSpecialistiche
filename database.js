@@ -1,6 +1,6 @@
 const fs = require('fs');
 const mysql = require('mysql2');
-const conf = JSON.parse(fs.readFileSync('conf.json'));
+const conf = JSON.parse(fs.readFileSync('./public/conf.json'));
 conf.ssl = {
    ca: fs.readFileSync(__dirname + '/ca.pem')
 }
@@ -22,14 +22,11 @@ const executeQuery = (sql) => {
 const database = {
    createTable: async () => {
       await executeQuery(`
-         CREATE TABLE IF NOT EXISTS accident (
+         CREATE TABLE IF NOT EXISTS type (
          id INT PRIMARY KEY AUTO_INCREMENT,
-         address varchar(255) NOT NULL,
-         date DATE NOT NULL,
-         time TIME NOT NULL,
-         injured int NOT NULL,
-         dead int NOT NULL)             
-      `);
+         name VARCHAR(20) NOT NULL
+         )`            
+      );
       return await executeQuery(`
          CREATE TABLE IF NOT EXISTS plates (
             id INT PRIMARY KEY AUTO_INCREMENT,
