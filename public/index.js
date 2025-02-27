@@ -4,6 +4,7 @@ import { createNavigator } from "./Navigator/CreateNavigator.js";
 import { createForm } from "./Form/CreateForm.js";
 import { createBookButton } from "./Bottoni/CreateButtons.js";
 import { giorno_iniziale, createDiz, createBooking } from "./Funzioni/CreateFunctions.js";
+import { createLogin } from "./Login/CreateLogin.js";
 
 // Bottoni per la navigazione tra le settimane
 const precedente = document.querySelector(".precedente");
@@ -61,3 +62,21 @@ form.submit((formData) => {
 // Creazione del bottone di prenotazione
 const bookButton = createBookButton(document.getElementById("controls"), form);
 bookButton.render();
+
+document.getElementById("buttonConfermaLogin").onclick = () => {
+    const username = document.getElementById("loginUsername").value;
+    const password = document.getElementById("loginPassword").value;
+    if (username && password) {
+        login.checkLogin(username, password).then((result) => {
+            console.log(result);
+            if (result === true) {
+                login.validateLogin();
+                window.location.hash = "#admin";
+            } else {
+                alert("Credenziali errate");
+            }
+        }, console.log);
+    } else {
+      alert("Compila tutti i campi.");
+    }
+};
