@@ -71,7 +71,6 @@ document.getElementById("buttonConfermaLogin").onclick = () => {
             console.log(result);
             if (result === true) {
                 login.validateLogin();
-                window.location.hash = "#admin";
             } else {
                 alert("Credenziali errate");
             }
