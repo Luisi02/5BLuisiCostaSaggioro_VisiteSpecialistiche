@@ -28,65 +28,61 @@ const database = {
          )`            
       );
       return await executeQuery(`
-         CREATE TABLE IF NOT EXISTS plates (
+         CREATE TABLE IF NOT EXISTS booking (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            plate VARCHAR(20) NOT NULL,
-            idAccident INT NOT NULL,
-            FOREIGN KEY (idAccident) REFERENCES accident(id) ON DELETE CASCADE)      
-      `);
+            idType INT NOT NULL,
+            date DATE NOT NULL,
+            hour INT NOT NULL,
+            name VARCHAR(50),
+            FOREIGN KEY (idType) REFERENCES type(id)
+            )`
+      );
    },
-   insert: async (accident) => {
+   insert: async (booking) => {
       let sql = `
-         INSERT INTO accident(address, date, time, injured, dead)
+         INSERT INTO booking(idType, date, hour, name)
          VALUES (
-            '${accident.address}', 
-            '${accident.date}', 
-            '${accident.time}', 
-            ${accident.injured}, 
-            ${accident.dead})
-           `;
-      const result = await executeQuery(sql);
-      accident.plates.forEach(async (element) => {
-         sql = `
-            INSERT INTO plates(plate, idAccident) 
-            VALUES (
-               '${element}', 
-               ${result.insertId})
-         `;
-         await executeQuery(sql);
-      });
+            '${booking.idType}', 
+            '${booking.date}', 
+            '${booking.hour}', 
+            '${booking.name}')`
+      ;
+      return await executeQuery(sql);
    },
    delete: (id) => {
       let sql = `
-        DELETE FROM accident
-        WHERE id=${id}
-           `;
+        DELETE FROM booking
+        WHERE id=${id}`
+      ;
       return executeQuery(sql);
    },
    select: async () => {
       let sql = `
-        SELECT id, address, date, time, injured, dead FROM accident 
-           `;
-      const result = await executeQuery(sql);
-      await Promise.all(result.map(async (accident) => {
-         sql = `
-            SELECT plate FROM plates WHERE idAccident=${accident.id} 
-           `;
-         const list = await executeQuery(sql);
-         accident.plates = list.map(p => p.plate);
-      }));
+        SELECT id, idType, DATE_FORMAT(date, '%Y-%m-%d') AS date, hour, name
+        FROM booking`
+      ;
+      let result = await executeQuery(sql);
+
+      if (!result || result.length === 0) {
+         return [];
+      }
+
       return result;
    },
    drop: async () => {
       let sql = `
-            DROP TABLE IF EXISTS plates
-           `;
+            DROP TABLE IF EXISTS type`
+            ;
       await executeQuery(sql);
       sql = `
-            DROP TABLE IF EXISTS accident
-           `;
+            DROP TABLE IF EXISTS booking`
+            ;
       await executeQuery(sql);
+   },
+   getTypes: async () => {
+      let sql = `SELECT * FROM type;`
+      return await executeQuery(sql);
    }
-}
+};
 
 module.exports = database;
