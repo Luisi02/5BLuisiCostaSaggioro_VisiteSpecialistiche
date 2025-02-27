@@ -67,7 +67,7 @@ document.getElementById("buttonConfermaLogin").onclick = () => {
     const username = document.getElementById("loginUsername").value;
     const password = document.getElementById("loginPassword").value;
     if (username && password) {
-        login.checkLogin(username, password).then((result) => {
+        createLogin.checkLogin(username, password).then((result) => {
             console.log(result);
             if (result === true) {
                 login.validateLogin();
