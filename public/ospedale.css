@@ -1,10 +1,10 @@
 .visible {
     display: block;
-  }
+}
    
-  .hidden {
+.hidden {
     display: none;
-  }
+}
 
 .container{
     display: none;
@@ -129,27 +129,27 @@
     text-align:center;
   }
 
-  .input-normali{
+.input-normali{
     width:370px;
     height:30px;
     font-size:20px;
     margin-bottom: 20px;
-  }
+}
 
-  .button-cancella {
+.button-cancella {
     background-color: red; 
     width:100px; 
     height:40px;
     font-size:20px;
     float:left;
     margin-left:10px
-  }
+}
 
-  .button-conferma {
+.button-conferma {
     background-color: green; 
     height:40px; 
     width:100px;
     font-size:20px;
     float:right;
     margin-right: 12px;
-  }
+}
