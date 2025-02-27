@@ -7,18 +7,15 @@ import { giorno_iniziale, createDiz, createBooking } from "./Funzioni/CreateFunc
 import { createLogin } from "./Login/CreateLogin.js";
 
 const login = createLogin();
-// Creazione del bottone di login nel DOM
-const loginButton = document.createElement("button");
-loginButton.innerText = "Login";
-loginButton.classList.add("btn", "btn-primary");
-document.body.prepend(loginButton);
+
+const loginButton = document.getElementById("LoginButton");
 
 // Nascondere inizialmente il bottone "Prenota"
 const bookButtonContainer = document.getElementById("controls");
 bookButtonContainer.classList.add("hidden");
 
-// Mostrare la modale di login solo quando si preme il bottone "Login"
 loginButton.onclick = () => {
+    document.getElementById("login").classList.add("visible");
     document.getElementById("modal").classList.add("visible");
 };
 
