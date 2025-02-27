@@ -15,7 +15,7 @@ const bookButtonContainer = document.getElementById("controls");
 bookButtonContainer.classList.add("hidden");
 
 loginButton.onclick = () => {
-    document.getElementById("login").classList.add("visible");
+    document.getElementById("login").classList.remove("hidden");
     document.getElementById("modal").classList.add("visible");
 };
 
@@ -84,8 +84,15 @@ document.getElementById("buttonConfermaLogin").onclick = () => {
             console.log(result);
             if (result === true) {
                 login.validateLogin();
-                document.getElementById("modal").classList.remove("visible"); // Chiude la modale
-                bookButtonContainer.classList.remove("hidden"); // Mostra il bottone "Prenota"
+                // Nasconde il login e il modal
+                document.getElementById("login").classList.add("hidden");
+                document.getElementById("modal").classList.remove("visible");
+
+                // Nasconde il pulsante di login
+                loginButton.classList.add("hidden");
+
+                // Mostra il bottone "Prenota"
+                bookButtonContainer.classList.remove("hidden");
             } else {
                 alert("Credenziali errate");
             }
@@ -93,4 +100,9 @@ document.getElementById("buttonConfermaLogin").onclick = () => {
     } else {
         alert("Compila tutti i campi.");
     }
+};
+
+document.getElementById("buttonCancella").onclick = () => {
+    document.getElementById("login").classList.add("hidden"); // Nasconde il form di login
+    document.getElementById("modal").classList.remove("visible"); // Nasconde il modal
 };
