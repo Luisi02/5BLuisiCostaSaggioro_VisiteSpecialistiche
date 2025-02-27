@@ -6,6 +6,18 @@ import { createBookButton } from "./Bottoni/CreateButtons.js";
 import { giorno_iniziale, createDiz, createBooking } from "./Funzioni/CreateFunctions.js";
 import { createLogin } from "./Login/CreateLogin.js";
 
+const database = createMiddleware();
+database.add({
+    "idType": 1,
+    "name": "Mario Rossi",
+    "hour": 1200,
+    "date": "2025-02-27"
+}).then(res => {
+    database.load().then(result => {
+        console.log(result);
+    });
+})
+
 const login = createLogin();
 
 const loginButton = document.getElementById("LoginButton");
