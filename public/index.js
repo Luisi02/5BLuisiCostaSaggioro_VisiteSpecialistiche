@@ -6,8 +6,21 @@ import { createBookButton } from "./Bottoni/CreateButtons.js";
 import { giorno_iniziale, createDiz, createBooking } from "./Funzioni/CreateFunctions.js";
 import { createLogin } from "./Login/CreateLogin.js";
 
-const login = createLogin()
+const login = createLogin();
+// Creazione del bottone di login nel DOM
+const loginButton = document.createElement("button");
+loginButton.innerText = "Login";
+loginButton.classList.add("btn", "btn-primary");
+document.body.prepend(loginButton);
 
+// Nascondere inizialmente il bottone "Prenota"
+const bookButtonContainer = document.getElementById("controls");
+bookButtonContainer.classList.add("hidden");
+
+// Mostrare la modale di login solo quando si preme il bottone "Login"
+loginButton.onclick = () => {
+    document.getElementById("modal").classList.add("visible");
+};
 
 // Bottoni per la navigazione tra le settimane
 const precedente = document.querySelector(".precedente");
@@ -74,11 +87,13 @@ document.getElementById("buttonConfermaLogin").onclick = () => {
             console.log(result);
             if (result === true) {
                 login.validateLogin();
+                document.getElementById("modal").classList.remove("visible"); // Chiude la modale
+                bookButtonContainer.classList.remove("hidden"); // Mostra il bottone "Prenota"
             } else {
                 alert("Credenziali errate");
             }
         }, console.log);
     } else {
-      alert("Compila tutti i campi.");
+        alert("Compila tutti i campi.");
     }
 };
