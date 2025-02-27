@@ -6,6 +6,9 @@ import { createBookButton } from "./Bottoni/CreateButtons.js";
 import { giorno_iniziale, createDiz, createBooking } from "./Funzioni/CreateFunctions.js";
 import { createLogin } from "./Login/CreateLogin.js";
 
+const login = createLogin()
+
+
 // Bottoni per la navigazione tra le settimane
 const precedente = document.querySelector(".precedente");
 const successivo = document.querySelector(".successiva");
@@ -67,7 +70,7 @@ document.getElementById("buttonConfermaLogin").onclick = () => {
     const username = document.getElementById("loginUsername").value;
     const password = document.getElementById("loginPassword").value;
     if (username && password) {
-        createLogin.checkLogin(username, password).then((result) => {
+        login.checkLogin(username, password).then((result) => {
             console.log(result);
             if (result === true) {
                 login.validateLogin();
