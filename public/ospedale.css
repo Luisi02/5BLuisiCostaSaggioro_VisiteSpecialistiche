@@ -110,3 +110,38 @@
     cursor: pointer;
     float: right;
 }
+
+.login-container {
+    background-color: lightgray;
+    z-index: 3;
+    width:400px;
+    height:250px;
+    border-radius: 15px;
+    padding-top:1px;
+    text-align:center;
+  }
+
+  .input-normali{
+    width:370px;
+    height:30px;
+    font-size:20px;
+    margin-bottom: 20px;
+  }
+
+  .button-cancella {
+    background-color: red; 
+    width:100px; 
+    height:40px;
+    font-size:20px;
+    float:left;
+    margin-left:10px
+  }
+
+  .button-conferma {
+    background-color: green; 
+    height:40px; 
+    width:100px;
+    font-size:20px;
+    float:right;
+    margin-right: 12px;
+  }
