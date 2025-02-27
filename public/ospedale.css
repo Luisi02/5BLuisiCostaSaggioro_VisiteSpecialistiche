@@ -1,3 +1,11 @@
+.visible {
+    display: block;
+  }
+   
+  .hidden {
+    display: none;
+  }
+
 .container{
     display: none;
     position: absolute;
