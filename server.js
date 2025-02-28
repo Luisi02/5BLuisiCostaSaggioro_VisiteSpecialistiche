@@ -10,7 +10,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 
-app.post("/insert", async (req, res) => {
+app.post("/insert-booking", async (req, res) => {
   const booking = req.body.booking;
   try {
     await database.insert(booking);
@@ -30,7 +30,7 @@ app.get('/types', async (req, res) => {
   res.json(list);
 });
 
-app.delete('/delete/:id', async (req, res) => {
+app.delete('/delete-booking/:id', async (req, res) => {
   await database.delete(req.params.id);
   res.json({result: "ok"});
 })

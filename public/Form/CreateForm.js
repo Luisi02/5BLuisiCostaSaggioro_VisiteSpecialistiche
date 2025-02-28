@@ -1,3 +1,5 @@
+import { Aggiorna } from "../index.js";
+
 /* Funzione per creare e gestire un form all'interno di una modale */
 export const createForm = () => {
     let data;

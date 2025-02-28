@@ -1,3 +1,5 @@
+import { Aggiorna } from "../index.js";
+
 //funzione per il calcolo del giorno di partenza, ossia lunedì e toglie sabati e domeniche
 export const giorno_iniziale = () => {
     let oggi = new Date();

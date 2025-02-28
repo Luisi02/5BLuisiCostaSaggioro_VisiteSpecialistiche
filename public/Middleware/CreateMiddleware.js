@@ -18,7 +18,7 @@ export const createMiddleware = () => {
             return json;
         },
         add: async (booking) => {
-            const response = await fetch("http://localhost:5600/insert-booking", {
+            const response = await fetch("http://localhost:5600/insert-booking/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

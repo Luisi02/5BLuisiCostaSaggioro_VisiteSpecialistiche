@@ -57,6 +57,8 @@ table.build(["LUNEDÌ", "MARTEDÌ", "MERCOLEDÌ", "GIOVEDÌ", "VENERDÌ"]);
 table.creaheader(new Date(giorno));
 table.crea(lista_diz, hours, new Date(giorno));
 
+
+
 // Gestione della navigazione tra le settimane
 precedente.onclick = () => {
     giorno.setDate(giorno.getDate() - 7);
@@ -118,3 +120,22 @@ document.getElementById("buttonCancella").onclick = () => {
     document.getElementById("login").classList.add("hidden"); // Nasconde il form di login
     document.getElementById("modal").classList.remove("visible"); // Nasconde il modal
 };
+
+//fa sia la get che set per poi aggiornare la tabella
+export const Aggiorna =(chiave_d,paziente) => {
+    createMiddleware.load().then(result_get => {
+       result_get[chiave_d]=paziente
+       createMiddleware.add(result_get).then(r=>{
+          console.log(r)
+          if (r==="Ok"){
+             createMiddleware.load().then((result_get) => {
+                console.log("genera")
+                console.log(result_get)
+                lista_diz=createDiz(result_get)
+                table.creaheader(giorno)
+                table.crea(lista_diz, hours,giorno);
+            })
+          }
+       })
+    });
+ }
